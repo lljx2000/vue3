@@ -1,6 +1,4 @@
 /* jshint esversion:6 */
-import { createStore } from "vuex";
-import store from "../index";
 import projectSetting from "@/settings/projectSetting";
 
 const {
@@ -16,7 +14,8 @@ const {
   pageAnimateType,
 } = projectSetting;
 
-const useProjectSettingStore = createStore({
+export default {
+  namespaced: true,
   state: () => ({
     navMode: navMode,
     navTheme,
@@ -66,9 +65,4 @@ const useProjectSettingStore = createStore({
       this.navTheme = value;
     },
   },
-});
-// 需要在设置之外使用
-function useProjectSettingStoreWithOut() {
-  return useProjectSettingStore(store);
-}
-export default useProjectSettingStoreWithOut;
+};
