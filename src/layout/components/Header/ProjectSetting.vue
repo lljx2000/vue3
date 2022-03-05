@@ -255,9 +255,8 @@
 <script>
 import { defineComponent } from "vue";
 // import { defineComponent, reactive, toRefs, unref, watch, computed } from "vue";`
-import * as useDesignSettingStore from "@/store/modules/designSetting";
-import * as useProjectSettingStore from "@/store/modules/projectSetting";
 import { CheckOutlined } from "@vicons/antd";
+import { useStore } from "vuex";
 import { Moon, SunnySharp } from "@vicons/ionicons5";
 import { darkTheme } from "naive-ui";
 // import { animates as animateOptions } from "@/settings/animateSetting";
@@ -265,11 +264,11 @@ import { darkTheme } from "naive-ui";
 export default defineComponent({
   name: "ProjectSetting",
   setup() {
-    const designStore = useDesignSettingStore();
-    const projectStore = useProjectSettingStore();
+    const store = useStore();
+    console.log("通过这种形式获取store的状态", store.state);
     return {
-      designStore,
-      projectStore,
+      designStore: store.state.DesignSetting,
+      settingStore: store.state.ProjectSetting,
       Moon,
       CheckOutlined,
       SunnySharp,
